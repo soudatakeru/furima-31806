@@ -2,15 +2,16 @@
 
    users テーブル
 
-| Column          | Type   | Options                        |
-| nickname        | string | null: false                    |
-| email           | string | null: false: foreign_key: true |
-| password        | string | null: false: foreign_key: true |
-| last_name       | string | null: false                    |
-| first_name      | string | null: false                    |
-| last_name_kana  | string | null: false                    |
-| first_name_kana | string | null: false                    |
-| birthday        | date   | null: false                    |
+| Column            | Type   | Options                        |
+| nickname          | string | null: false                    |
+| email             | string | null: false: foreign_key: true |
+| password          | string | null: false: foreign_key: true |
+|encrypted_password |string  | null: false: foreign_key: true |
+| last_name         | string | null: false                    |
+| first_name        | string | null: false                    |
+| last_name_kana    | string | null: false                    |
+| first_name_kana   | string | null: false                    |
+| birthday          | date   | null: false                    |
 
     Association
 - has_many :items
@@ -18,6 +19,7 @@
 
    items テーブル
 
+| Column           | Type       | Options                        |
 | name             | string     | null: false                    |
 | explanation      | text       | null: false                    |
 | category_id      | integer    | null: false                    |
@@ -30,59 +32,28 @@
 
     Association
 - belongs_to :user
-- belongs_to :category(active_hash)
 - has_one :purchases
-- belongs_to :category(active_hash)
-- belongs_to :condition(active_hash)
-- belongs_to :handling_time(active_hash)
-- belongs_to :prefecture(active_hash)
-
-   category(active_hash) テーブル
-
-| category | string | null: false |
-
-    Association
-- has_many :items
-
-   condition(active_hash) テーブル
-
-| condition | string | null: false |
-
-    Association
-- has_many :items
-
-   handling_time(active_hash) テーブル
-
-| handling_time | string | null: false |
-
-    Association
-- has_many :items
-
-   prefecture(active_hash) テーブル
-
-| prefecture | string | null: false |
-
-    Association
-- has_many :items
-- has_many :addresses
 
    purchases テーブル
 
-| user | references | null: false: foreign_key: true |
-| item | references | null: false: foreign_key: true |
+| Column | Type       | Options                        |
+| user   | references | null: false: foreign_key: true |
+| item   | references | null: false: foreign_key: true |
 
    Association
-- has_one :addresse
+- has_one :address
+- belongs_to :user
+- belongs_to :item
 
 
    addresses
-
+| Column         | Type       | Options                        |
 | post_code      | string     | null: false                    |
-| city           | string     | null: false                    |
+| city           | string     |                     　　　　　　 |
 | building_name  | string     | null: false: foreign_key: true |
 | phone_number   | string     | null: false                    |
 | prefectures_id | integer    | null: false: foreign_key: true |
 | purchase       | references | null: false: foreign_key: true |
 
    Association
-- belongs_to :prefecture(active_hash)
+- belongs_to :purchase
