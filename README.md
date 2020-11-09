@@ -4,9 +4,8 @@
 
 | Column            | Type   | Options                        |
 | nickname          | string | null: false                    |
-| email             | string | null: false: foreign_key: true |
-| password          | string | null: false: foreign_key: true |
-|encrypted_password |string  | null: false: foreign_key: true |
+| email             | string | null: false:                   |
+|encrypted_password |string  | null: false:                   |
 | last_name         | string | null: false                    |
 | first_name        | string | null: false                    |
 | last_name_kana    | string | null: false                    |
@@ -32,7 +31,7 @@
 
     Association
 - belongs_to :user
-- has_one :purchases
+- has_one :purchase
 
    purchases テーブル
 
@@ -49,10 +48,10 @@
    addresses
 | Column         | Type       | Options                        |
 | post_code      | string     | null: false                    |
-| city           | string     |                     　　　　　　 |
-| building_name  | string     | null: false: foreign_key: true |
+| city           | string     | null: false              　　　 |
+| building_name  | string     |                                |
 | phone_number   | string     | null: false                    |
-| prefectures_id | integer    | null: false: foreign_key: true |
+| prefecture_id  | integer    | null: false: foreign_key: true |
 | purchase       | references | null: false: foreign_key: true |
 
    Association
