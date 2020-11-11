@@ -8,11 +8,9 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   VALID_LAST_NAME = /\A[ぁ-んァ-ン一-龥]/.freeze
   validates :last_name, format: { with: VALID_LAST_NAME }
-  VALID_FIRST_NAME = /\A[ぁ-んァ-ン一-龥]/.freeze
   validates :first_name, format: { with: VALID_LAST_NAME }
   VALID_LAST_NAME_KANA = /\A[ァ-ヶー－]+\z/.freeze
   validates :last_name_kana, format: { with: VALID_LAST_NAME_KANA }
-  VALID_FIRST_NAME_KANA = /\A[ァ-ヶー－]+\z/.freeze
   validates :first_name_kana, format: { with: VALID_LAST_NAME_KANA }
   validates :birthday, presence: true
 end

@@ -102,6 +102,26 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid")
       end
+      it "last_nameが半角では登録できない" do
+        @user.last_name = "aa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+      it "first_nameが半角では登録できない" do
+        @user.first_name = "aa"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+      it "last_nameが数字では登録できない" do
+        @user.last_name = "２２"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+      it "first_nameが数字では登録できない" do
+        @user.first_name = "２２"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
       it "last_name_nakaが空では登録できない" do
         @user.last_name_kana = ""
         @user.valid?
