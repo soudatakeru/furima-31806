@@ -20,7 +20,8 @@ class Item < ApplicationRecord
     validates :postage_payer_id
     validates :prefecture_id
     validates :handling_id
-    validates :price
+    validates :price, numericality: {greater_than: 300, less_than: 9999999},
+                      format: { with: /\A[0-9]+\z/}
   end
   with_options numericality: { other_than: 1 } do
     validates :category_id
