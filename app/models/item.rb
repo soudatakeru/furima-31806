@@ -17,8 +17,8 @@ class Item < ApplicationRecord
     validates :postage_id
     validates :prefecture_id
     validates :handling_id
-    validates :price, numericality: {greater_than: 300, less_than: 9999999},
-                      format: { with: /\A[0-9]+\z/}
+    validates :price, numericality: { greater_than: 300, less_than: 9_999_999 },
+                      format: { with: /\A[0-9]+\z/ }
   end
   with_options numericality: { other_than: 1 } do
     validates :category_id
@@ -27,9 +27,4 @@ class Item < ApplicationRecord
     validates :handling_id
     validates :prefecture_id
   end
-
-    
-
 end
-
-
