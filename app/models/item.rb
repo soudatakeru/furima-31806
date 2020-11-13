@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :handling
   belongs_to :prefecture
   with_options presence: true do
-    # validates :item
+    validates :image
     validates :name
     validates :explanation
     validates :category_id

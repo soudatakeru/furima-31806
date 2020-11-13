@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :postage_payer do
+  factory :postage do
     
   end
 end
