@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :set_image, only: [:destroy, :edit, :update, :show]
+  before_action :set_item, only: [:destroy, :edit, :update, :show]
   def index
     @items = Item.order('created_at DESC')
   end
