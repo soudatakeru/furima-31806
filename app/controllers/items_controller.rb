@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path if @item.destroy
+    #redirect_to root_path if @item.destroy
   end
 
   def edit
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
 
   private
 
-  def set_image
+  def set_item
     @item = Item.find(params[:id])
   end
 
