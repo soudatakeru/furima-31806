@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    #redirect_to root_path if @item.destroy
+    redirect_to root_path if @item.destroy
   end
 
   def edit
