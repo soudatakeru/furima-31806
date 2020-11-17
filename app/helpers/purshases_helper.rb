@@ -1,0 +1,2 @@
+module PurshasesHelper
+end
