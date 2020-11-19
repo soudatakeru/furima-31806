@@ -5,7 +5,7 @@ class PurchasesController < ApplicationController
     @purchase = UserPurchase.new
     if current_user == @item.user
       redirect_to root_path
-    elsif @items.blank?
+    elsif @item.blank?
       redirect_to root_path
     end
   end
@@ -22,21 +22,18 @@ class PurchasesController < ApplicationController
     end
   end
 
+  private
 
-    private
-    def user_purchase_params
-      params.require(:user_purchase).permit(:purchase_id, :post_code, :city, :phone_number, :address, :prefecture_id, :building_name).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
-    end
+  def user_purchase_params
+    params.require(:user_purchase).permit(:purchase_id, :post_code, :city, :phone_number, :address, :prefecture_id, :building_name).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
 
-    def pay_item
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: user_purchase_params[:token],
-        currency: 'jpy'
-      )
-    end
+  def pay_item
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: user_purchase_params[:token],
+      currency: 'jpy'
+    )
+  end
 end
-
-
-
