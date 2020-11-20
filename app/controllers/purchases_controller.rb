@@ -5,7 +5,7 @@ class PurchasesController < ApplicationController
     @purchase = UserPurchase.new
     if current_user == @item.user
       redirect_to root_path
-    elsif @item.blank?
+    elsif @item.purchase.present?
       redirect_to root_path
     end
   end
