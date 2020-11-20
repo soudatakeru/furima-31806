@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Purchase, type: :model do
   before do
-    @purchase = FactoryBot.build(:user_purchase)
+    @item = FactoryBot.create(:item)
+    @buyer = FactoryBot.create(:user)
+    @purchase = FactoryBot.build(:user_purchase, item_id: @item.id, user_id: @buyer.id)
+    sleep 1
   end
   describe '商品購入機能' do
     context '商品購入がうまくいくとき' do
@@ -22,9 +25,10 @@ RSpec.describe Purchase, type: :model do
         expect(@purchase.errors.full_messages).to include("Post code can't be blank")
       end
       it 'post_codeに-がなければ登録できない' do
+        
         @purchase.post_code = '3620806'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include('Post code is invalid')
+        expect(@purchase.errors.full_messages).to include("Post code is invalid")
       end
       it 'cityが空では登録できない' do
         @purchase.city = nil
@@ -39,7 +43,7 @@ RSpec.describe Purchase, type: :model do
       it 'phone_numberが11桁以上では登録できない' do
         @purchase.phone_number = '111111111111'
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
+        expect(@purchase.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
       end
       it 'addressがなければ登録できない' do
         @purchase.address = nil
@@ -49,7 +53,17 @@ RSpec.describe Purchase, type: :model do
       it 'prefecture_idが1では登録できない' do
         @purchase.prefecture_id = 1
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include('Prefecture must be other than 1')
+        expect(@purchase.errors.full_messages).to include("Prefecture must be other than 1")
+      end
+      it 'user_idが空では購入できない' do
+        @purchase.user_id = nil
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では購入できない' do
+        @purchase.item_id = nil
+        @purchase.valid?
+        expect(@purchase.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
