@@ -6,6 +6,5 @@ FactoryBot.define do
     phone_number { '123456789' }
     address { '1' }
     prefecture_id { 2 }
-    
   end
 end
