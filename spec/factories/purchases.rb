@@ -7,6 +7,6 @@ FactoryBot.define do
     city { 'あ' }
     phone_number { '123456789' }
     address { '1' }
-    prefecture_id { '2' }
+    prefecture_id { 2 }
   end
 end
