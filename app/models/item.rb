@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   belongs_to :handling
   belongs_to :prefecture
   has_one :purchase
+
   with_options presence: true do
     validates :image
     validates :name
