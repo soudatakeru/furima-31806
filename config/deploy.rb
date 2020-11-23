@@ -2,7 +2,7 @@
 lock "~> 3.14.1"
 
 set :application, "furima-31806"
-set :repo_url,  'soudatakeru/soudatakeru/furima-31806.git'
+set :repo_url,  'git@github.com:soudatakeru/soudatakeru/furima-31806.git'
 set :rbenv_ruby, '2.6.5'
 set :ssh_options, auth_methods: ['publickey'],
                                   keys: ['~/.ssh/take3034.pem']
